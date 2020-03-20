@@ -1,11 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `The Youth Being`,
+    title: `The YouthBeing`,
     description: `Learn and become`,
     author: `@prince`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
