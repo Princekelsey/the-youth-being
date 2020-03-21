@@ -6,11 +6,26 @@ body {
   font-family: $site-font;
 }
 a {
-  color: #0056b3;
+  color: #51237e;
   &:hover {
-    color: #007bff;
+    color: #2d104b;
     text-decoration: none;
   }
+}
+
+.headerText {
+  font-weight: bold;
+  font-size: large;
+}
+
+.badge-primary {
+  color: #fff;
+  background-color: #663399;
+}
+
+.content {
+  width: 90%;
+  margin: 0 auto;
 }
 
 h1 {
@@ -27,6 +42,30 @@ h1 {
 
 .dropdown-toggle {
   white-space: nowrap;
+  color: #fff !important;
+}
+
+.btn-c {
+  background: transparent !important;
+  // border: none !important;
+  color: #663399;
+  border-color: #663399 !important ;
+}
+
+.btn-main {
+  background: #663399 !important ;
+  color: #fff;
+}
+
+.btn-main:hover {
+  background: transparent !important;
+  // border: none !important;
+  color: #663399;
+  border-color: #663399 !important ;
+}
+
+.btn-c:hover {
+  background: #663399 !important;
   color: #fff !important;
 }
 
