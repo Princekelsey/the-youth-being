@@ -9,18 +9,18 @@ import {
   Badge,
 } from "reactstrap"
 import Img from "gatsby-image"
-import { slugify } from "../utils"
+import { slugify } from "../utils/slugifyFormatter"
 
-const Post = ({ title, author, path, date, body, fluidImage, tags }) => {
+const Post = ({ title, author, slug, date, body, fluidImage, tags }) => {
   return (
     <Card>
-      <Link to={path}>
+      <Link to={slug}>
         {" "}
         <Img className="card-image-top" fluid={fluidImage} />
       </Link>
       <CardBody>
         <CardTitle>
-          <Link to={path} className="headerText">
+          <Link to={slug} className="headerText">
             {title}
           </Link>
         </CardTitle>
@@ -42,7 +42,7 @@ const Post = ({ title, author, path, date, body, fluidImage, tags }) => {
           ))}
         </ul>
         <Link
-          to={path}
+          to={slug}
           className=" btn btn-sm rounded-pill btn-c text-capitalize text-center float-right"
         >
           Read more

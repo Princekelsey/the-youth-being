@@ -11,9 +11,74 @@ import {
 import { graphql, StaticQuery, Link } from "gatsby"
 import Img from "gatsby-image"
 
-const SideBar = () => {
+const SideBar = ({ postAuthor, authorImageFluid }) => {
   return (
     <div>
+      {postAuthor && (
+        <Card>
+          <Img className="card-image-top" fluid={authorImageFluid} />
+          <CardBody>
+            <CardTitle className="text-center text-uppercase mb-3">
+              {postAuthor.name}
+            </CardTitle>
+            <CardText>{postAuthor.bio}</CardText>
+            <div className="author-social-links text-center">
+              <ul>
+                <li>
+                  <a
+                    href={postAuthor.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="facebook"
+                  >
+                    <i className="fab fa-facebook-f fa-lg"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={postAuthor.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="twitter"
+                  >
+                    <i className="fab fa-twitter fa-lg"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={postAuthor.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="instagram"
+                  >
+                    <i className="fab fa-instagram fa-lg"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={postAuthor.google}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="google"
+                  >
+                    <i className="fab fa-google fa-lg"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={postAuthor.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="linkedin"
+                  >
+                    <i className="fab fa-linkedin fa-lg"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </CardBody>
+        </Card>
+      )}
       <Card>
         <CardBody>
           <CardTitle className="text-center text-uppercase mb-3">
@@ -56,7 +121,7 @@ const SideBar = () => {
               <div>
                 {data.allMarkdownRemark.edges.map(({ node }) => (
                   <Card key={node.id}>
-                    <Link to={node.frontmatter.path}>
+                    <Link to={node.fields.slug}>
                       <Img
                         className="card-image-top"
                         fluid={node.frontmatter.image.childImageSharp.fluid}
@@ -64,7 +129,7 @@ const SideBar = () => {
                     </Link>
                     <CardBody>
                       <CardTitle>
-                        <Link to={node.frontmatter.path}>
+                        <Link to={node.fields.slug}>
                           {node.frontmatter.title}
                         </Link>
                       </CardTitle>
@@ -91,7 +156,6 @@ const sideBarQuery = graphql`
           id
           frontmatter {
             title
-            path
             image {
               childImageSharp {
                 fluid(maxWidth: 300) {
@@ -99,6 +163,9 @@ const sideBarQuery = graphql`
                 }
               }
             }
+          }
+          fields {
+            slug
           }
         }
       }

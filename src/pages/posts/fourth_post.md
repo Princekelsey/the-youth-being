@@ -1,16 +1,17 @@
 ---
-title: "Third Post - Weath Creation"
-date: 2020-03-19 09:20:00
-author: "Random Author 3"
+title: "Fourth Post - Lifestyle"
+date: 2020-03-12 19:55:00
+author: "Random Author 4"
 
 image: ../../images/group5.jpg
 tags:
+  - travel
+  - entertainment
   - money
-  - job
-  - freedom
 
 categories:
-  - Spirit Flakes
+  - Birthday Posts
+
 ---
 
 Midst first it, you're multiply divided. There don't, second his one

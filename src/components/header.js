@@ -15,6 +15,8 @@ import {
   DropdownItem,
   NavbarText,
 } from "reactstrap"
+import { slugify } from "../utils/slugifyFormatter"
+import { Link } from "gatsby"
 
 const Header = ({ siteTitle }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -27,6 +29,7 @@ const Header = ({ siteTitle }) => {
         <div className="container">
           <NavbarBrand href="/" className="text-light">
             {siteTitle}
+            {/* <img src="img/logo.jpeg" style={{ width: "5%" }} /> */}
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
@@ -46,12 +49,36 @@ const Header = ({ siteTitle }) => {
                   Categories
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>Spirit Flakes</DropdownItem>
-                  <DropdownItem>Random Thoughts</DropdownItem>
-                  <DropdownItem> Fashion Talks</DropdownItem>
-                  <DropdownItem> Love & Relationship</DropdownItem>
-                  <DropdownItem> Our TYB Guests</DropdownItem>
-                  <DropdownItem> Birthday Posts</DropdownItem>
+                  <DropdownItem>
+                    <Link to={`/category/${slugify("Spirit Flakes")}`}>
+                      Spirit Flakes
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to={`/category/${slugify("Random Thoughts")}`}>
+                      Random Thoughts
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to={`/category/${slugify("Fashion Talks")}`}>
+                      Fashion Talks
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to={`/category/${slugify("Love & Relationship")}`}>
+                      Love & Relationship
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to={`/category/${slugify("Our TYB Guests")}`}>
+                      Our TYB Guests
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to={`/category/${slugify("Birthday Posts")}`}>
+                      Birthday Posts
+                    </Link>
+                  </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
