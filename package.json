@@ -28,6 +28,7 @@
     "reactstrap": "^8.4.1"
   },
   "devDependencies": {
+    "gatsby-wordpress-migrate": "^1.0.6",
     "prettier": "^1.19.1"
   },
   "keywords": [
