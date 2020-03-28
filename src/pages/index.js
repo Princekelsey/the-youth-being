@@ -27,23 +27,21 @@ const IndexPage = () => {
               query={indexQuerry}
               render={data => {
                 setNumberOfPages(
-                  Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage)
+                  Math.ceil(data.allContentfulPost.totalCount / postsPerPage)
                 )
 
                 return (
                   <div>
-                    {data.allMarkdownRemark.edges.map(({ node }) => (
+                    {data.allContentfulPost.edges.map(({ node }) => (
                       <Post
                         key={node.id}
-                        title={node.frontmatter.title}
-                        author={node.frontmatter.author}
-                        date={node.frontmatter.date}
-                        slug={node.fields.slug}
-                        body={node.excerpt}
-                        tags={node.frontmatter.tags}
-                        fluidImage={
-                          node.frontmatter.image.childImageSharp.fluid
-                        }
+                        title={node.title}
+                        author={node.author.name}
+                        date={node.date}
+                        slug={node.slug}
+                        body={node.shortIntroduction.shortIntroduction}
+                        tags={node.tags}
+                        fluidImage={node.image.fluid.src}
                       />
                     ))}
                   </div>
@@ -63,31 +61,26 @@ const IndexPage = () => {
 
 const indexQuerry = graphql`
   query {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 3
-    ) {
+    allContentfulPost(sort: { fields: date, order: DESC }, limit: 3) {
       totalCount
       edges {
         node {
           id
-          frontmatter {
-            title
-            author
-            date(formatString: "MMM Do YYYY")
-            tags
-            image {
-              childImageSharp {
-                fluid(maxWidth: 900) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          date(formatString: "MMM Do YYYY")
+          author {
+            name
+          }
+          title
+          slug
+          tags
+          shortIntroduction {
+            shortIntroduction
+          }
+          image {
+            fluid(maxWidth: 800) {
+              src
             }
           }
-          fields {
-            slug
-          }
-          excerpt
         }
       }
     }

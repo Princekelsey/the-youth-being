@@ -10,6 +10,13 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-transformer-remark`,
     {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: "2enjg1uif1as",
+        accessToken: "SKv2hUVQdY2jI88vr6Vhvql06Y27-Bo-h9N14z_S9W8",
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

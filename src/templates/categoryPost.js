@@ -8,24 +8,27 @@ import NoCategoryFound from "../pages/noCategoryFound"
 
 const CategoryPost = ({ data, pageContext }) => {
   const { category } = pageContext
+  const isCategory = data.allContentfulPost.edges
+  console.log(isCategory)
+
   return (
     <Layout>
-      {category ? (
+      {isCategory.length ? (
         <div className="container">
           <span className="text-left category-text">Category:</span> {""}
           {category}
           <Row>
             <Col md="8">
-              {data.allMarkdownRemark.edges.map(({ node }) => (
+              {data.allContentfulPost.edges.map(({ node }) => (
                 <Post
                   key={node.id}
-                  title={node.frontmatter.title}
-                  author={node.frontmatter.author}
-                  date={node.frontmatter.date}
-                  slug={node.fields.slug}
-                  body={node.excerpt}
-                  tags={node.frontmatter.tags}
-                  fluidImage={node.frontmatter.image.childImageSharp.fluid}
+                  title={node.title}
+                  author={node.author.name}
+                  date={node.date}
+                  slug={node.slug}
+                  body={node.shortIntroduction.shortIntroduction}
+                  tags={node.tags}
+                  fluidImage={node.image.fluid.src}
                 />
               ))}
             </Col>
@@ -43,31 +46,29 @@ const CategoryPost = ({ data, pageContext }) => {
 
 export const categoryQuery = graphql`
   query($category: String!) {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { categories: { in: [$category] } } }
+    allContentfulPost(
+      filter: { categories: { in: [$category] } }
+      sort: { fields: date, order: DESC }
     ) {
       totalCount
       edges {
         node {
           id
-          frontmatter {
-            title
-            date(formatString: "MMM Do YYYY")
-            author
-            tags
-            image {
-              childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          date(formatString: "MMM Do YYYY")
+          author {
+            name
+          }
+          slug
+          tags
+          title
+          shortIntroduction {
+            shortIntroduction
+          }
+          image {
+            fluid(maxWidth: 800) {
+              src
             }
           }
-          fields {
-            slug
-          }
-          excerpt
         }
       }
     }

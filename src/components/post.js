@@ -16,7 +16,11 @@ const Post = ({ title, author, slug, date, body, fluidImage, tags }) => {
     <Card>
       <Link to={slug}>
         {" "}
-        <Img className="card-image-top" fluid={fluidImage} />
+        <img
+          src={fluidImage}
+          className="card-image-top"
+          style={{ width: "100%" }}
+        />
       </Link>
       <CardBody>
         <CardTitle>

@@ -9,6 +9,8 @@ import { slugify } from "../utils/slugifyFormatter"
 import authors from "../utils/authors"
 import commentBox from "commentbox.io"
 import { DiscussionEmbed } from "disqus-react"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { BLOCKS } from "@contentful/rich-text-types"
 
 const projectID = "5706114352021504-proj"
 const uniqueUrl = "www-theyouthbeing-com-1.disqus.com"
@@ -20,12 +22,12 @@ const SinglePost = ({ data, pageContext }) => {
   //     removeCommentBox()
   //   }
   // }, [])
-  const post = data.markdownRemark.frontmatter
-  const author = authors.find(author => author.name === post.author)
+  const post = data.contentfulPost
+  // const author = authors.find(author => author.name === post.author)
   const baseUrl = "https://theyouthbeing.com/"
   const disqusShortName = "www-theyouthbeing-com"
   const disqusConfig = {
-    identifer: data.markdownRemark.id,
+    identifer: data.contentfulPost.id,
     title: post.title,
     url: baseUrl + pageContext.slug,
   }
@@ -39,9 +41,10 @@ const SinglePost = ({ data, pageContext }) => {
         <Row>
           <Col md="8">
             <Card>
-              <Img
+              <img
                 className="card-image-top"
-                fluid={post.image.childImageSharp.fluid}
+                src={post.image.fluid.src}
+                style={{ width: "100%" }}
               />
               <CardBody>
                 <CardSubtitle>
@@ -50,12 +53,20 @@ const SinglePost = ({ data, pageContext }) => {
                   </span>{" "}
                   {""}
                   <span className="text-info text-muted font-italic">
-                    {post.author}
+                    {post.author.name}
                   </span>
                 </CardSubtitle>
-                <div
-                  dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-                />
+                <div>
+                  {documentToReactComponents(post.postBody.json, {
+                    renderNode: {
+                      [BLOCKS.EMBEDDED_ASSET]: (node, children) => (
+                        <img
+                          src={`${node.data.target.fields.file["en-US"].url}?w=500`}
+                        />
+                      ),
+                    },
+                  })}
+                </div>
                 <ul className="post-tags">
                   {post.tags.map(tag => (
                     <li key={tag}>
@@ -144,8 +155,8 @@ const SinglePost = ({ data, pageContext }) => {
           </Col>
           <Col md="4">
             <SideBar
-              postAuthor={author}
-              authorImageFluid={data.file.childImageSharp.fluid}
+              postAuthor={post.author}
+              authorImageFluid={post.author.image.fluid.src}
             />
           </Col>
         </Row>
@@ -155,28 +166,33 @@ const SinglePost = ({ data, pageContext }) => {
 }
 
 export const postQuerry = graphql`
-  query blogPostBySlug($slug: String!, $imageUrl: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+  query blogPostBySlug($slug: String!) {
+    contentfulPost(slug: { eq: $slug }) {
       id
-      html
-      frontmatter {
-        title
-        author
-        date(formatString: "MMM Do YYYY")
-        tags
+      postBody {
+        json
+      }
+      title
+      date(formatString: "MMM Do YYYY")
+      tags
+      author {
+        google
+        facebook
+        instagram
+        linkedin
+        name
+        bio {
+          bio
+        }
         image {
-          childImageSharp {
-            fluid(maxWidth: 800) {
-              ...GatsbyImageSharpFluid
-            }
+          fluid(maxWidth: 300) {
+            src
           }
         }
       }
-    }
-    file(relativePath: { eq: $imageUrl }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid
+      image {
+        fluid(maxWidth: 800) {
+          src
         }
       }
     }

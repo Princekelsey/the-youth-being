@@ -7,7 +7,7 @@ import Post from "../components/post"
 
 const TagPost = ({ data, pageContext }) => {
   const { tag } = pageContext
-  const { totalCount } = data.allMarkdownRemark
+  const { totalCount } = data.allContentfulPost
   const pageHeaderTitle = `${totalCount} post${
     totalCount === 1 ? "" : "s"
   } tagged with ${tag}`
@@ -17,16 +17,16 @@ const TagPost = ({ data, pageContext }) => {
         <h3 className="text-left category-text">{pageHeaderTitle}</h3>
         <Row>
           <Col md="8">
-            {data.allMarkdownRemark.edges.map(({ node }) => (
+            {data.allContentfulPost.edges.map(({ node }) => (
               <Post
                 key={node.id}
-                title={node.frontmatter.title}
-                author={node.frontmatter.author}
-                date={node.frontmatter.date}
-                slug={node.fields.slug}
-                body={node.excerpt}
-                tags={node.frontmatter.tags}
-                fluidImage={node.frontmatter.image.childImageSharp.fluid}
+                title={node.title}
+                author={node.author.name}
+                date={node.date}
+                slug={node.slug}
+                body={node.shortIntroduction.shortIntroduction}
+                tags={node.tags}
+                fluidImage={node.image.fluid.src}
               />
             ))}
           </Col>
@@ -41,31 +41,28 @@ const TagPost = ({ data, pageContext }) => {
 
 export const tagQuery = graphql`
   query($tag: String!) {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+    allContentfulPost(
+      sort: { fields: date, order: DESC }
+      filter: { tags: { in: [$tag] } }
     ) {
       totalCount
       edges {
         node {
-          id
-          frontmatter {
-            title
-            date(formatString: "MMM Do YYYY")
-            author
-            tags
-            image {
-              childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          title
+          slug
+          date(formatString: "MMM Do YYYY")
+          tags
+          image {
+            fluid(maxHeight: 800) {
+              src
             }
           }
-          fields {
-            slug
+          shortIntroduction {
+            shortIntroduction
           }
-          excerpt
+          author {
+            name
+          }
         }
       }
     }

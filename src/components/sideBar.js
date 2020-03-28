@@ -16,12 +16,16 @@ const SideBar = ({ postAuthor, authorImageFluid }) => {
     <div>
       {postAuthor && (
         <Card>
-          <Img className="card-image-top" fluid={authorImageFluid} />
+          <img
+            className="card-image-top"
+            src={authorImageFluid}
+            style={{ width: "100%" }}
+          />
           <CardBody>
             <CardTitle className="text-center text-uppercase mb-3">
               {postAuthor.name}
             </CardTitle>
-            <CardText>{postAuthor.bio}</CardText>
+            <CardText>{postAuthor.bio.bio}</CardText>
             <div className="author-social-links text-center">
               <ul>
                 <li>
@@ -119,19 +123,18 @@ const SideBar = ({ postAuthor, authorImageFluid }) => {
             query={sideBarQuery}
             render={data => (
               <div>
-                {data.allMarkdownRemark.edges.map(({ node }) => (
+                {data.allContentfulPost.edges.map(({ node }) => (
                   <Card key={node.id}>
-                    <Link to={node.fields.slug}>
-                      <Img
+                    <Link to={node.slug}>
+                      <img
                         className="card-image-top"
-                        fluid={node.frontmatter.image.childImageSharp.fluid}
+                        src={node.image.fluid.src}
+                        style={{ width: "100%" }}
                       />
                     </Link>
                     <CardBody>
                       <CardTitle>
-                        <Link to={node.fields.slug}>
-                          {node.frontmatter.title}
-                        </Link>
+                        <Link to={node.slug}>{node.title}</Link>
                       </CardTitle>
                     </CardBody>
                   </Card>
@@ -146,26 +149,17 @@ const SideBar = ({ postAuthor, authorImageFluid }) => {
 }
 
 const sideBarQuery = graphql`
-  query sideBarQuery {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 3
-    ) {
+  query {
+    allContentfulPost(sort: { fields: date, order: DESC }, limit: 3) {
       edges {
         node {
           id
-          frontmatter {
-            title
-            image {
-              childImageSharp {
-                fluid(maxWidth: 300) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          title
+          slug
+          image {
+            fluid(maxWidth: 300) {
+              src
             }
-          }
-          fields {
-            slug
           }
         }
       }

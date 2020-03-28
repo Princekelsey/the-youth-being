@@ -3,18 +3,6 @@ const authors = require("./src/utils/authors")
 const path = require("path")
 const _ = require("lodash")
 
-exports.onCreateNode = ({ node, actions }) => {
-  if (node.internal.type === "MarkdownRemark") {
-    const { createNodeField } = actions
-    const slugFromTitle = slugify(node.frontmatter.title)
-    createNodeField({
-      node,
-      name: "slug",
-      value: slugFromTitle,
-    })
-  }
-}
-
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
   const singlePostTemplate = path.resolve("src/templates/singlePost.js")
@@ -23,19 +11,19 @@ exports.createPages = ({ actions, graphql }) => {
   const postListTemplate = path.resolve("src/templates/postList.js")
   const authorPostsTemplate = path.resolve("src/templates/authorPosts.js")
 
-  return graphql(
+  const posts = graphql(
     `
       {
-        allMarkdownRemark {
+        allContentfulPost {
           edges {
             node {
-              frontmatter {
-                author
-                tags
-                categories
-              }
-              fields {
-                slug
+              title
+              slug
+              categories
+              id
+              tags
+              author {
+                name
               }
             }
           }
@@ -45,23 +33,21 @@ exports.createPages = ({ actions, graphql }) => {
   ).then(res => {
     if (res.errors) return Promise.reject(res.errors)
 
-    const posts = res.data.allMarkdownRemark.edges
+    const posts = res.data.allContentfulPost.edges
     posts.forEach(({ node }) => {
       createPage({
-        path: node.fields.slug,
+        path: node.slug,
         component: singlePostTemplate,
         context: {
-          slug: node.fields.slug,
-          imageUrl: authors.find(
-            author => author.name === node.frontmatter.author
-          ).imageUrl,
+          slug: node.slug,
+          author: node.author.name,
         },
       })
     })
     let tags = []
     _.each(posts, edge => {
-      if (_.get(edge, "node.frontmatter.tags")) {
-        tags = tags.concat(edge.node.frontmatter.tags)
+      if (_.get(edge, "node.tags")) {
+        tags = tags.concat(edge.node.tags)
       }
     })
 
@@ -84,8 +70,8 @@ exports.createPages = ({ actions, graphql }) => {
 
     let categories = []
     _.each(posts, edge => {
-      if (_.get(edge, "node.frontmatter.categories")) {
-        categories = categories.concat(edge.node.frontmatter.categories)
+      if (_.get(edge, "node.categories")) {
+        categories = categories.concat(edge.node.categories)
       }
     })
 
@@ -95,7 +81,7 @@ exports.createPages = ({ actions, graphql }) => {
     })
     categories = _.uniq(categories)
 
-    // tagPage
+    // categories
     categories.forEach(category => {
       createPage({
         path: `/category/${slugify(category)}`,
@@ -125,15 +111,57 @@ exports.createPages = ({ actions, graphql }) => {
     })
 
     // authors posts
-    authors.forEach(author => {
+    // authors.forEach(author => {
+    //   createPage({
+    //     path: `/author/${slugify(author.name)}`,
+    //     component: authorPostsTemplate,
+    //     context: {
+    //       authorName: author.name,
+    //       imageUrl: author.imageUrl,
+    //     },
+    //   })
+    // })
+  })
+  const authors = graphql(`
+    {
+      allContentfulAuthors {
+        totalCount
+        edges {
+          node {
+            bio {
+              bio
+            }
+            linkedin
+            name
+            twitter
+            google
+            id
+            facebook
+            image {
+              fluid(maxWidth: 300) {
+                src
+              }
+            }
+          }
+        }
+      }
+    }
+  `).then(result => {
+    if (result.errors) {
+      Promise.reject(result.errors)
+    }
+    const authors = result.data.allContentfulAuthors.edges
+    authors.forEach(({ node }) => {
       createPage({
-        path: `/author/${slugify(author.name)}`,
+        path: `/author/${slugify(node.name)}`,
         component: authorPostsTemplate,
         context: {
-          authorName: author.name,
-          imageUrl: author.imageUrl,
+          authorName: node.name,
+          author: node.bio,
         },
       })
     })
   })
+
+  return Promise.all([authors, posts])
 }

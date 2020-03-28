@@ -7,7 +7,7 @@ import Post from "../components/post"
 import PaginationLinks from "../components/paginationLinks"
 
 const PostList = ({ data, pageContext }) => {
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allContentfulPost.edges
   const { currentPage, numberOfPages } = pageContext
   return (
     <Layout>
@@ -17,13 +17,13 @@ const PostList = ({ data, pageContext }) => {
             {posts.map(({ node }) => (
               <Post
                 key={node.id}
-                title={node.frontmatter.title}
-                author={node.frontmatter.author}
-                date={node.frontmatter.date}
-                slug={node.fields.slug}
-                body={node.excerpt}
-                tags={node.frontmatter.tags}
-                fluidImage={node.frontmatter.image.childImageSharp.fluid}
+                title={node.title}
+                author={node.author.name}
+                date={node.date}
+                slug={node.slug}
+                body={node.shortIntroduction.shortIntroduction}
+                tags={node.tags}
+                fluidImage={node.image.fluid.src}
               />
             ))}
             <PaginationLinks
@@ -42,31 +42,30 @@ const PostList = ({ data, pageContext }) => {
 
 export const postListQuery = graphql`
   query postListQuery($skip: Int!, $limit: Int!) {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
+    allContentfulPost(
+      sort: { fields: date, order: DESC }
       limit: $limit
       skip: $skip
     ) {
+      totalCount
       edges {
         node {
           id
-          frontmatter {
-            title
-            date(formatString: "MMM Do YYYY")
-            author
-            tags
-            image {
-              childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          slug
+          tags
+          title
+          image {
+            fluid(maxWidth: 800) {
+              src
             }
           }
-          fields {
-            slug
+          author {
+            name
           }
-          excerpt
+          date(formatString: "MMM Do YYYY")
+          shortIntroduction {
+            shortIntroduction
+          }
         }
       }
     }

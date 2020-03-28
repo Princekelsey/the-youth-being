@@ -7,34 +7,39 @@ import SideBar from "../components/sideBar"
 import Post from "../components/post"
 
 const AuthorPosts = ({ data, pageContext }) => {
-  const { totalCount } = data.allMarkdownRemark
+  const { totalCount } = data.allContentfulPost
   const pageHeaderTitle = `${totalCount} Post${
     totalCount === 1 ? "" : "s"
   } by:  ${pageContext.authorName}`
-  const author = authors.find(author => author.name === pageContext.authorName)
+  const author = data.allContentfulPost.edges.map(({ node }) => {
+    return node.author
+  })
+
   return (
     <Layout>
       <div className="container">
         <h3 className="text-left category-text">{pageHeaderTitle}</h3>
         <Row>
           <Col md="8">
-            {data.allMarkdownRemark.edges.map(({ node }) => (
-              <Post
-                key={node.id}
-                title={node.frontmatter.title}
-                author={node.frontmatter.author}
-                date={node.frontmatter.date}
-                slug={node.fields.slug}
-                body={node.excerpt}
-                tags={node.frontmatter.tags}
-                fluidImage={node.frontmatter.image.childImageSharp.fluid}
-              />
-            ))}
+            {data.allContentfulPost.edges.map(({ node }) => {
+              return (
+                <Post
+                  key={node.id}
+                  title={node.title}
+                  author={node.author.name}
+                  date={node.date}
+                  slug={node.slug}
+                  body={node.shortIntroduction.shortIntroduction}
+                  tags={node.tags}
+                  fluidImage={node.image.fluid.src}
+                />
+              )
+            })}
           </Col>
           <Col md="4">
             <SideBar
-              postAuthor={author}
-              authorImageFluid={data.file.childImageSharp.fluid}
+              postAuthor={author[0]}
+              authorImageFluid={author[0].image.fluid.src}
             />
           </Col>
         </Row>
@@ -44,41 +49,41 @@ const AuthorPosts = ({ data, pageContext }) => {
 }
 
 export const authorsPostQuery = graphql`
-  query($authorName: String!, $imageUrl: String!) {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { author: { eq: $authorName } } }
+  query($authorName: String!) {
+    allContentfulPost(
+      filter: { author: { name: { eq: $authorName } } }
+      sort: { fields: date, order: DESC }
+      limit: 4
     ) {
-      totalCount
       edges {
         node {
+          slug
+          tags
+          title
           id
-          frontmatter {
-            title
-            date(formatString: "MMM Do YYYY")
-            author
-            tags
-            image {
-              childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          shortIntroduction {
+            shortIntroduction
+          }
+          date(formatString: "MMM Do YYYY")
+          image {
+            fluid(maxWidth: 800) {
+              src
             }
           }
-          fields {
-            slug
+          author {
+            name
+            image {
+              fluid(maxWidth: 300) {
+                src
+              }
+            }
+            bio {
+              bio
+            }
           }
-          excerpt
         }
       }
-    }
-    file(relativePath: { eq: $imageUrl }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid
-        }
-      }
+      totalCount
     }
   }
 `
