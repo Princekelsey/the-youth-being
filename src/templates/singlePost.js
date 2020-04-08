@@ -1,29 +1,17 @@
-import React, { useEffect } from "react"
+import React from "react"
 import Layout from "../components/layout"
 import SideBar from "../components/sideBar"
 import { graphql, Link } from "gatsby"
 import SEO from "../components/seo"
 import { Row, Col, Card, CardBody, CardSubtitle, Badge } from "reactstrap"
-import Img from "gatsby-image"
 import { slugify } from "../utils/slugifyFormatter"
-import authors from "../utils/authors"
-import commentBox from "commentbox.io"
+// import commentBox from "commentbox.io"
 import { DiscussionEmbed } from "disqus-react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS } from "@contentful/rich-text-types"
 
-const projectID = "5706114352021504-proj"
-const uniqueUrl = "www-theyouthbeing-com-1.disqus.com"
-
 const SinglePost = ({ data, pageContext }) => {
-  // useEffect(() => {
-  //   const removeCommentBox = commentBox(projectID)
-  //   return () => {
-  //     removeCommentBox()
-  //   }
-  // }, [])
   const post = data.contentfulPost
-  // const author = authors.find(author => author.name === post.author)
   const baseUrl = "https://theyouthbeing.com/"
   const disqusShortName = "www-theyouthbeing-com"
   const disqusConfig = {
@@ -45,6 +33,7 @@ const SinglePost = ({ data, pageContext }) => {
                 className="card-image-top"
                 src={post.image.fluid.src}
                 style={{ width: "100%" }}
+                alt={post.title}
               />
               <CardBody>
                 <CardSubtitle>
@@ -61,6 +50,7 @@ const SinglePost = ({ data, pageContext }) => {
                     renderNode: {
                       [BLOCKS.EMBEDDED_ASSET]: (node, children) => (
                         <img
+                          alt="post"
                           src={`${node.data.target.fields.file["en-US"].url}?w=500`}
                         />
                       ),

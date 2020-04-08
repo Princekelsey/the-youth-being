@@ -28,7 +28,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "gatsby-wordpress-migrate": "^1.0.6",

@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { Row, Col } from "reactstrap"
 import { graphql } from "gatsby"
-import authors from "../utils/authors"
 import Layout from "../components/layout"
 import SideBar from "../components/sideBar"
 import Post from "../components/post"

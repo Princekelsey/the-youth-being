@@ -13,7 +13,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
 } from "reactstrap"
 import { slugify } from "../utils/slugifyFormatter"
 import { Link } from "gatsby"

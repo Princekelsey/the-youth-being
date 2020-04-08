@@ -4,84 +4,103 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption,
 } from "reactstrap"
+import { graphql, StaticQuery } from "gatsby"
+import { v4 as uuidv4 } from "uuid"
 
-const items = [
-  {
-    src: "img/resized/p4.jpg",
-    altText: "Slide 1",
-    caption: "Slide 1",
-  },
-  {
-    src: "img/resized/p2.jpg",
-    altText: "Slide 2",
-    caption: "Slide 2",
-  },
-  {
-    src: "img/resized/p3.jpg",
-    altText: "Slide 3",
-    caption: "Slide 3",
-  },
-]
-
-const ImageSlider = props => {
+const ImageSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0)
+
   const [animating, setAnimating] = useState(false)
-
-  const next = () => {
-    if (animating) return
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1
-    setActiveIndex(nextIndex)
-  }
-
-  const previous = () => {
-    if (animating) return
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1
-    setActiveIndex(nextIndex)
-  }
 
   const goToIndex = newIndex => {
     if (animating) return
     setActiveIndex(newIndex)
   }
 
-  const slides = items.map(item => {
-    return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={item.src}
-      >
-        <img src={item.src} alt={item.altText} className="w-100" />
-        {/* <CarouselCaption
-          captionText={item.caption}
-          captionHeader={item.caption}
-        /> */}
-      </CarouselItem>
-    )
-  })
-
   return (
-    <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-      <CarouselIndicators
-        items={items}
-        activeIndex={activeIndex}
-        onClickHandler={goToIndex}
-      />
-      {slides}
-      <CarouselControl
-        direction="prev"
-        directionText="Previous"
-        onClickHandler={previous}
-      />
-      <CarouselControl
-        direction="next"
-        directionText="Next"
-        onClickHandler={next}
-      />
-    </Carousel>
+    <StaticQuery
+      query={sliderQuery}
+      render={data => {
+        // setItemData(data.allContentfulSliderImage.edges)
+        const next = () => {
+          if (animating) return
+          const nextIndex =
+            activeIndex === data.allContentfulSliderImage.edges.length - 1
+              ? 0
+              : activeIndex + 1
+          setActiveIndex(nextIndex)
+        }
+
+        const previous = () => {
+          if (animating) return
+          const nextIndex =
+            activeIndex === 0
+              ? data.allContentfulSliderImage.edges - 1
+              : activeIndex - 1
+          setActiveIndex(nextIndex)
+        }
+        return (
+          <Carousel
+            autoPlay={true}
+            activeIndex={activeIndex}
+            next={next}
+            previous={previous}
+            key={uuidv4()}
+          >
+            {/* <CarouselIndicators
+              items={data.allContentfulSliderImage.edges}
+              activeIndex={activeIndex}
+              onClickHandler={goToIndex}
+              key={uuidv4()}
+            /> */}
+
+            {data.allContentfulSliderImage.edges.map(({ node }) => (
+              <CarouselItem
+                onExiting={() => setAnimating(true)}
+                onExited={() => setAnimating(false)}
+                key={`${uuidv4()}${node.id}`}
+              >
+                <img
+                  src={node.image.resize.src}
+                  alt={node.name}
+                  className="d-block w-100"
+                />
+              </CarouselItem>
+            ))}
+            <CarouselControl
+              direction="prev"
+              directionText="Previous"
+              onClickHandler={previous}
+            />
+            <CarouselControl
+              direction="next"
+              directionText="Next"
+              onClickHandler={next}
+            />
+          </Carousel>
+        )
+      }}
+    />
   )
 }
+
+export const sliderQuery = graphql`
+  query myQuery {
+    allContentfulSliderImage {
+      edges {
+        node {
+          name
+          image {
+            resize(width: 1024, height: 400) {
+              src
+            }
+          }
+          id
+        }
+      }
+    }
+  }
+`
 
 export default ImageSlider

@@ -8,7 +8,6 @@ import {
   CardSubtitle,
   Badge,
 } from "reactstrap"
-import Img from "gatsby-image"
 import { slugify } from "../utils/slugifyFormatter"
 
 const Post = ({ title, author, slug, date, body, fluidImage, tags }) => {
@@ -17,6 +16,7 @@ const Post = ({ title, author, slug, date, body, fluidImage, tags }) => {
       <Link to={slug}>
         {" "}
         <img
+          alt={title}
           src={fluidImage}
           className="card-image-top"
           style={{ width: "100%" }}

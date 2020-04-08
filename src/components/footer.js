@@ -12,7 +12,7 @@ const Footer = () => {
               href="https://www.facebook.com"
               className="facebook"
               target="_blank"
-              rel="noopener norefferrer"
+              rel="noopener noreferrer"
             >
               <i className="fab fa-facebook-f fa-2x"></i>
             </a>
@@ -22,7 +22,7 @@ const Footer = () => {
               href="https://www.facebook.com"
               className="twitter"
               target="_blank"
-              rel="noopener norefferrer"
+              rel="noopener noreferrer"
             >
               <i className="fab fa-twitter fa-2x"></i>
             </a>
@@ -32,7 +32,7 @@ const Footer = () => {
               href="https://www.facebook.com"
               className="instagram"
               target="_blank"
-              rel="noopener norefferrer"
+              rel="noopener noreferrer"
             >
               <i className="fab fa-instagram fa-2x"></i>
             </a>

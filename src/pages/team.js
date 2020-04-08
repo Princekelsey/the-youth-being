@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Col, Row, Card, CardBody, CardText, CardTitle } from "reactstrap"
 import SideBar from "../components/sideBar"
-import authors from "../utils/authors"
+
 import { slugify } from "../utils/slugifyFormatter"
 
 const TeamPage = ({ data }) => {

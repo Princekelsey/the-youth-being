@@ -9,7 +9,6 @@ import {
   Input,
 } from "reactstrap"
 import { graphql, StaticQuery, Link } from "gatsby"
-import Img from "gatsby-image"
 
 const SideBar = ({ postAuthor, authorImageFluid }) => {
   return (
@@ -19,6 +18,7 @@ const SideBar = ({ postAuthor, authorImageFluid }) => {
           <img
             className="card-image-top"
             src={authorImageFluid}
+            alt={postAuthor.name}
             style={{ width: "100%" }}
           />
           <CardBody>
@@ -127,6 +127,7 @@ const SideBar = ({ postAuthor, authorImageFluid }) => {
                   <Card key={node.id}>
                     <Link to={node.slug}>
                       <img
+                        alt={node.slug}
                         className="card-image-top"
                         src={node.image.fluid.src}
                         style={{ width: "100%" }}
