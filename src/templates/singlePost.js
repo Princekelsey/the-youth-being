@@ -50,7 +50,9 @@ const SinglePost = ({ data, pageContext }) => {
                     renderNode: {
                       [BLOCKS.EMBEDDED_ASSET]: (node, children) => (
                         <img
+                          className="text-center"
                           alt="post"
+                          style={{ width: "100%" }}
                           src={`${node.data.target.fields.file["en-US"].url}?w=500`}
                         />
                       ),
