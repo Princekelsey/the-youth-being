@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Layout from "../components/layout"
 import SideBar from "../components/sideBar"
 import { graphql, Link } from "gatsby"
@@ -10,6 +10,8 @@ import { DiscussionEmbed } from "disqus-react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS } from "@contentful/rich-text-types"
 
+const projectId = "5696298204266496-proj"
+
 const SinglePost = ({ data, pageContext }) => {
   const post = data.contentfulPost
   const baseUrl = "https://theyouthbeing.com/"
@@ -19,6 +21,18 @@ const SinglePost = ({ data, pageContext }) => {
     title: post.title,
     url: baseUrl + pageContext.slug,
   }
+
+  //   commentBox(projectId, {
+  //     backgroundColor: '#000',
+  //     textColor: '#fff'
+  // });
+
+  // useEffect(() => {
+  //   let removeCommentBox = commentBox(projectId)
+  //   return () => {
+  //     removeCommentBox()
+  //   }
+  // }, [])
 
   return (
     <Layout>
@@ -143,6 +157,7 @@ const SinglePost = ({ data, pageContext }) => {
                 shortname={disqusShortName}
                 config={disqusConfig}
               />
+              {/* <div className="commentbox" /> */}
             </div>
           </Col>
           <Col md="4">

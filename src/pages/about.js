@@ -3,21 +3,29 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Col, Row } from "reactstrap"
 import SideBar from "../components/sideBar"
+import logo from "../images/logo.jpeg"
 
 const AboutPage = () => (
   <Layout>
     <SEO title="About" />
     <div className="container pt-2">
       <Row>
-        <Col md="8">
+        <Col md="8" className="mb-2">
           <div className="">
             <h3 className="text-left">About Us</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime
-              neque, quas, dolor voluptatum quae at dignissimos, tempore
-              recusandae quaerat iste harum. Accusantium, repudiandae optio non
-              quis corrupti quasi praesentium nesciunt.
+              In a fast paced world every youth's soul and being cries out for
+              succor, knowledge and understanding. We are passionate to guide
+              you through all life phases, spiritually, mentally, emotionally
+              and physically with raw accurate truths and love to watch you
+              evolve and BECOME!
             </p>
+            <img
+              src={logo}
+              // style={{ width: "100%" }}
+              alt="theyouthbeing"
+              className="img-fluid"
+            />
           </div>
         </Col>
         <Col md="4">
