@@ -14,7 +14,10 @@ const NotFoundPage = () => (
         <Col md="8">
           <div className="mb-2">
             <h3 className="text-left">Ooops! Page Found </h3>
-            <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+            <p>
+              Is either the page your looking for doesn&#39;t exist or there is
+              no post in this category yet. My Bad.
+            </p>
             <Link
               className="btn btn-sm rounded-pill btn-main text-uppercase"
               to="/"

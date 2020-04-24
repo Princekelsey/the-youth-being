@@ -19,7 +19,7 @@ const Footer = () => {
           </li>
           <li>
             <a
-              href="https://www.facebook.com"
+              href="https://www.twitter.com"
               className="twitter"
               target="_blank"
               rel="noopener noreferrer"
@@ -29,7 +29,7 @@ const Footer = () => {
           </li>
           <li>
             <a
-              href="https://www.facebook.com"
+              href="https://www.instagram.com/__t_y_b_/"
               className="instagram"
               target="_blank"
               rel="noopener noreferrer"

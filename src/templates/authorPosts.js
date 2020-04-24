@@ -91,6 +91,10 @@ export const authorsPostQuery = graphql`
           }
           author {
             name
+            google
+            facebook
+            instagram
+            linkedin
             image {
               fluid(maxWidth: 300) {
                 src

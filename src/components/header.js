@@ -38,11 +38,11 @@ const Header = ({ siteTitle }) => {
                   About
                 </NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink href="/team" className="text-light">
                   Team
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Categories
