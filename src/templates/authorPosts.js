@@ -22,7 +22,8 @@ const AuthorPosts = ({ data, pageContext }) => {
   const pageHeaderTitle = `${totalCount} Post${
     totalCount === 1 ? "" : "s"
   } by:  ${pageContext.authorName}`
-  const author = data.allContentfulPost.edges.map(({ node }) => {
+  let author = []
+  author = data.allContentfulPost.edges.map(({ node }) => {
     return node.author
   })
 
@@ -59,10 +60,12 @@ const AuthorPosts = ({ data, pageContext }) => {
             ) : null}
           </Col>
           <Col md="4">
-            <SideBar
-              postAuthor={author[0]}
-              authorImageFluid={author[0].image.fluid.src}
-            />
+            {author.length ? (
+              <SideBar
+                postAuthor={author[0]}
+                authorImageFluid={author[0].image.fluid.src}
+              />
+            ) : null}
           </Col>
         </Row>
       </div>
