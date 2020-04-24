@@ -26,6 +26,8 @@ const AuthorPosts = ({ data, pageContext }) => {
     return node.author
   })
 
+  // console.log(author)
+
   return (
     <Layout>
       <div className="container">
