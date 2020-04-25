@@ -14,8 +14,8 @@ const projectId = "5696298204266496-proj"
 
 const SinglePost = ({ data, pageContext }) => {
   const post = data.contentfulPost
-  const baseUrl = "https://theyouthbeing.com/"
-  const disqusShortName = "www-theyouthbeing-com"
+  const baseUrl = "https://theyouthbeing.org/"
+  const disqusShortName = "www-theyouthbeing-org"
   const disqusConfig = {
     identifer: data.contentfulPost.id,
     title: post.title,
