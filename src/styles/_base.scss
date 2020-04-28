@@ -28,7 +28,7 @@ a {
 .headerText {
   font-weight: bold;
   font-size: large;
-  text-transform: capitalize;
+  text-transform: capitalize !important;
 }
 
 .badge-primary {
