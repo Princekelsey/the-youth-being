@@ -23,7 +23,7 @@ const Post = ({ title, author, slug, date, body, fluidImage, tags }) => {
         />
       </Link>
       <CardBody>
-        <CardTitle>
+        <CardTitle className="text-capitalize">
           <Link to={slug} className="headerText">
             {title}
           </Link>
