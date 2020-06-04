@@ -52,16 +52,21 @@ const Header = ({ siteTitle }) => {
                     <Link to={`/category/${slugify("Faith")}`}>Faith</Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to={`/category/${slugify("Random Thoughts")}`}>
-                      Random Thoughts
+                    <Link to={`/category/${slugify("Love & Relationships")}`}>
+                      Love & Relationships
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to={`/category/${slugify("Money/Business Matters")}`}>
+                      Money/Business Matters
                     </Link>
                   </DropdownItem>
                   <DropdownItem>
                     <Link to={`/category/${slugify("Fashion")}`}>Fashion</Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to={`/category/${slugify("Love & Relationships")}`}>
-                      Love & Relationships
+                    <Link to={`/category/${slugify("Random Thoughts")}`}>
+                      Random Thoughts
                     </Link>
                   </DropdownItem>
                   <DropdownItem>
