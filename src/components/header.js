@@ -49,9 +49,7 @@ const Header = ({ siteTitle }) => {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    <Link to={`/category/${slugify("Spirit Flakes")}`}>
-                      Spirit Flakes
-                    </Link>
+                    <Link to={`/category/${slugify("Faith")}`}>Faith</Link>
                   </DropdownItem>
                   <DropdownItem>
                     <Link to={`/category/${slugify("Random Thoughts")}`}>
@@ -59,23 +57,21 @@ const Header = ({ siteTitle }) => {
                     </Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to={`/category/${slugify("Fashion Talks")}`}>
-                      Fashion Talks
+                    <Link to={`/category/${slugify("Fashion")}`}>Fashion</Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to={`/category/${slugify("Love & Relationships")}`}>
+                      Love & Relationships
                     </Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to={`/category/${slugify("Love & Relationship")}`}>
-                      Love & Relationship
+                    <Link to={`/category/${slugify("Our Guests")}`}>
+                      Our Guests
                     </Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to={`/category/${slugify("Our TYB Guests")}`}>
-                      Our TYB Guests
-                    </Link>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Link to={`/category/${slugify("Birthday Posts")}`}>
-                      Birthday Posts
+                    <Link to={`/category/${slugify("Birthday Notes")}`}>
+                      Birthday Notes
                     </Link>
                   </DropdownItem>
                 </DropdownMenu>

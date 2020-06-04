@@ -18,7 +18,10 @@ const AboutPage = () => (
               succor, knowledge and understanding. We are passionate to guide
               you through all life phases, spiritually, mentally, emotionally
               and physically with raw accurate truths and love to watch you
-              evolve and BECOME!
+              evolve and BECOME!. This raw truth however is not from our head
+              but from the "Word of God." This is our Only Truth and Manual. So
+              as you learn from here, you will not just become your best, you
+              will be who Jesus wants you to "Be".
             </p>
             <img
               src={logo}

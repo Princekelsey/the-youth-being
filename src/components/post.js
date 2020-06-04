@@ -38,7 +38,7 @@ const Post = ({ title, author, slug, date, body, fluidImage, tags }) => {
           {tags.map(tag => (
             <li key={tag}>
               <Link to={`/tag/${slugify(tag)}`}>
-                <Badge color="primary" className="text-uppercase    ">
+                <Badge color="primary" className="text-uppercase">
                   {tag}
                 </Badge>
               </Link>
