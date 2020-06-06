@@ -1,26 +1,30 @@
-import React, { useState } from "react"
-import { graphql, StaticQuery, Link } from "gatsby"
-import { Row, Col } from "reactstrap"
-import Post from "../components/post"
+import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Title from "../components/title"
-import ImageSlider from "../components/imageSlider"
+import { Col, Row } from "reactstrap"
+import { graphql, StaticQuery } from "gatsby"
 import SideBar from "../components/sideBar"
+import Post from "../components/post"
+import PaginationLinks from "../components/paginationLinks"
 
-const IndexPage = () => {
+const PostPage = () => {
+  const [numberOfPages, setNumberOfPages] = React.useState("")
+  const postsPerPage = 3
+
   return (
     <Layout>
-      <SEO title="Home" />
-      <Title />
-      <ImageSlider />
-
-      <div className="container pt-4">
+      <SEO title="Posts" />
+      <div className="container pt-3">
+        <h3 className="text-left">All Posts</h3>
         <Row>
           <Col md="8">
             <StaticQuery
               query={indexQuerry}
               render={data => {
+                setNumberOfPages(
+                  Math.ceil(data.allContentfulPost.totalCount / postsPerPage)
+                )
+
                 return (
                   <div>
                     {data.allContentfulPost.edges.map(({ node }) => (
@@ -39,13 +43,7 @@ const IndexPage = () => {
                 )
               }}
             />
-
-            <Link
-              to="/posts"
-              className="btn btn-sm rounded-pill btn-main mb-4 text-uppercase"
-            >
-              all posts
-            </Link>
+            <PaginationLinks currentPage={1} numberOfPages={numberOfPages} />
           </Col>
           <Col md="4">
             <SideBar />
@@ -58,11 +56,12 @@ const IndexPage = () => {
 
 const indexQuerry = graphql`
   query {
-    allContentfulPost(limit: 3) {
+    allContentfulPost(sort: { fields: date, order: DESC }, limit: 3) {
+      totalCount
       edges {
         node {
           id
-          date(formatString: "MMM Do YYY")
+          date(formatString: "MMM Do YYYY")
           author {
             name
           }
@@ -83,4 +82,4 @@ const indexQuerry = graphql`
   }
 `
 
-export default IndexPage
+export default PostPage

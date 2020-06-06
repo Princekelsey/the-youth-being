@@ -5,11 +5,15 @@ const PaginationLinks = ({ currentPage, numberOfPages }) => {
   const isFirstPage = currentPage === 1
   const isLastPage = currentPage === numberOfPages
   const prevPage =
-    currentPage - 1 === 1 ? "/" : "/page/" + (currentPage - 1).toString()
+    currentPage - 1 === 1 ? "/posts" : "/page/" + (currentPage - 1).toString()
   const nextPage = "/page/" + (currentPage + 1).toString()
 
   return (
-    <Pagination aria-label="Page navigation example">
+    // <div id="client-paginator"></div>
+    <Pagination
+      aria-label="Page navigation example"
+      className="table-responsive mb-2"
+    >
       {isFirstPage ? (
         <PaginationItem disabled>
           <PaginationLink previous href="/"></PaginationLink>
@@ -24,7 +28,7 @@ const PaginationLinks = ({ currentPage, numberOfPages }) => {
         currentPage === index + 1 ? (
           <PaginationItem active key={`page-number${index + 1}`}>
             <PaginationLink
-              href={`/${index === 0 ? "" : "page/" + (index + 1)} `}
+              href={`/${index === 0 ? "posts" : "page/" + (index + 1)} `}
             >
               {index + 1}
             </PaginationLink>
@@ -32,7 +36,7 @@ const PaginationLinks = ({ currentPage, numberOfPages }) => {
         ) : (
           <PaginationItem key={`page-number${index + 1}`}>
             <PaginationLink
-              href={`/${index === 0 ? "" : "page/" + (index + 1)} `}
+              href={`/${index === 0 ? "posts" : "page/" + (index + 1)} `}
             >
               {index + 1}
             </PaginationLink>

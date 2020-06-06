@@ -43,6 +43,16 @@ const Header = ({ siteTitle }) => {
                   Team
                 </NavLink>
               </NavItem> */}
+              <NavItem>
+                <NavLink href="/posts" className="text-light">
+                  Posts
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/contact" className="text-light">
+                  Contact Me
+                </NavLink>
+              </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Categories

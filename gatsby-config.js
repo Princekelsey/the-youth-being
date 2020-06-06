@@ -10,6 +10,16 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-transformer-remark`,
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GATSBY_GOOGLE_TRACKING_ID,
+        head: true,
+        anonymize: true,
+        respectDNT: true,
+        pageTransitionDelay: 0,
+      },
+    },
+    {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: "ynqlv9rj1t2s",

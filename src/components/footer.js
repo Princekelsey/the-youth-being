@@ -3,7 +3,11 @@ import React from "react"
 const Footer = () => {
   return (
     <div className="site-footer">
-      <h4 className="text-center">The YouthBeing</h4>
+      <h4 className="text-center">
+        {" "}
+        copyright&copy;{new Date().getFullYear()} <span>The YouthBeing</span>{" "}
+        all rights reserved
+      </h4>
       <p className="text-center"> Follow us on social media</p>
       <div className="footer-social-links">
         <ul className="social-links-list">

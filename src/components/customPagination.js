@@ -3,7 +3,10 @@ import { Pagination, PaginationItem, PaginationLink } from "reactstrap"
 
 const CustomPagination = ({ handleClick, currentPage, numberOfPages }) => {
   return (
-    <Pagination aria-label="Page navigation example">
+    <Pagination
+      aria-label="Page navigation example"
+      className="table-responsive mb-2"
+    >
       <PaginationItem disabled={currentPage <= 0}>
         <PaginationLink
           onClick={e => handleClick(e, currentPage - 1)}
