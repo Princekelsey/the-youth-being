@@ -58,7 +58,7 @@ const ContactPage = () => {
     <Layout>
       <SEO title="Contact" />
       <div className="container pt-3">
-        <h3 className="text-left">Contact Me</h3>
+        <h3 className="text-left">Contact Us</h3>
         <Row>
           <Col md="8">
             <Form

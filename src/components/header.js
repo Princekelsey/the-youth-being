@@ -50,7 +50,7 @@ const Header = ({ siteTitle }) => {
               </NavItem>
               <NavItem>
                 <NavLink href="/contact" className="text-light">
-                  Contact Me
+                  Contact Us
                 </NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
