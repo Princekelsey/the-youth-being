@@ -58,19 +58,19 @@ const IndexPage = () => {
 
 const indexQuerry = graphql`
   query {
-    allContentfulPost(limit: 3) {
+    allContentfulPost(filter: { featured: { eq: true } }) {
       edges {
         node {
-          id
           date(formatString: "MMM Do YYY")
-          author {
-            name
-          }
-          title
+          id
           slug
           tags
+          title
           shortIntroduction {
             shortIntroduction
+          }
+          author {
+            name
           }
           image {
             fluid(maxWidth: 800) {
