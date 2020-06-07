@@ -32,6 +32,7 @@ const ContactPage = () => {
     } else return null
   }
 
+  // form submission
   const submitForm = ev => {
     ev.preventDefault()
     const form = ev.target
