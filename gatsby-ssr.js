@@ -5,3 +5,15 @@
  */
 
 // You can delete this file if you're not using it
+
+import React from "react"
+
+export const onRenderBody = ({ setPostBodyComponents }) => {
+  setPostBodyComponents([
+    <script
+      data-ad-client="ca-pub-7062023353493724"
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    />,
+  ])
+}

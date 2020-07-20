@@ -60,7 +60,7 @@ exports.createPages = ({ actions, graphql }) => {
     // tagPage
     tags.forEach(tag => {
       createPage({
-        path: `/tag/${slugify(tag)}`,
+        path: `/tag/${slugify(tag.trim())}`,
         component: tagPostTemplate,
         context: {
           tag,

@@ -11,8 +11,6 @@ import {
 import { graphql, StaticQuery, Link } from "gatsby"
 
 const SideBar = ({ postAuthor, authorImageFluid }) => {
-  console.log(postAuthor)
-
   return (
     <div>
       {postAuthor && (
