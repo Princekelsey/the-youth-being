@@ -36,7 +36,7 @@ exports.createPages = ({ actions, graphql }) => {
     const posts = res.data.allContentfulPost.edges
     posts.forEach(({ node }) => {
       createPage({
-        path: node.slug,
+        path: `/posts/${node.slug}`,
         component: singlePostTemplate,
         context: {
           slug: node.slug,

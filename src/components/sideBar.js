@@ -125,7 +125,7 @@ const SideBar = ({ postAuthor, authorImageFluid }) => {
               <div>
                 {data.allContentfulPost.edges.map(({ node }) => (
                   <Card key={node.id}>
-                    <Link to={node.slug}>
+                    <Link to={`/posts/${node.slug}`}>
                       <img
                         alt={node.slug}
                         className="card-image-top"

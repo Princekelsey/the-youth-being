@@ -13,7 +13,7 @@ import { slugify } from "../utils/slugifyFormatter"
 const Post = ({ title, author, slug, date, body, fluidImage, tags }) => {
   return (
     <Card>
-      <Link to={slug}>
+      <Link to={`/posts/${slug}`}>
         {" "}
         <img
           alt={title}
@@ -46,7 +46,7 @@ const Post = ({ title, author, slug, date, body, fluidImage, tags }) => {
           ))}
         </ul>
         <Link
-          to={slug}
+          to={`/posts/${slug}`}
           className=" btn btn-sm rounded-pill btn-c text-capitalize text-center float-right"
         >
           Read more
