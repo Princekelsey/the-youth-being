@@ -135,7 +135,7 @@ const SideBar = ({ postAuthor, authorImageFluid }) => {
                     </Link>
                     <CardBody>
                       <CardTitle>
-                        <Link to={node.slug}>{node.title}</Link>
+                        <Link to={`/posts/${node.slug}`}>{node.title}</Link>
                       </CardTitle>
                     </CardBody>
                   </Card>

@@ -24,7 +24,7 @@ const Post = ({ title, author, slug, date, body, fluidImage, tags }) => {
       </Link>
       <CardBody>
         <CardTitle className="text-capitalize">
-          <Link to={slug} className="headerText">
+          <Link to={`/posts/${slug}`} className="headerText">
             {title}
           </Link>
         </CardTitle>
