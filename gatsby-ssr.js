@@ -11,9 +11,9 @@ import React from "react"
 export const onRenderBody = ({ setPostBodyComponents }) => {
   setPostBodyComponents([
     <script
-      data-ad-client="ca-pub-7062023353493724"
+      data-ad-client="ca-pub-7433715133975060"
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    />,
+    ></script>,
   ])
 }

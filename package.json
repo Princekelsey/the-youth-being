@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "the-youth-being-blog",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A blog website for theyouthbeing",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Prince <princekelsey299@gmail.com>",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^13.4.0",
     "@contentful/rich-text-types": "^14.1.0",

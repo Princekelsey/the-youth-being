@@ -1,16 +1,13 @@
-import React, { useEffect } from "react"
+import React from "react"
 import Layout from "../components/layout"
 import SideBar from "../components/sideBar"
 import { graphql, Link } from "gatsby"
 import SEO from "../components/seo"
 import { Row, Col, Card, CardBody, CardSubtitle, Badge } from "reactstrap"
 import { slugify } from "../utils/slugifyFormatter"
-// import commentBox from "commentbox.io"
 import { DiscussionEmbed } from "disqus-react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS } from "@contentful/rich-text-types"
-
-const projectId = "5696298204266496-proj"
 
 const SinglePost = ({ data, pageContext }) => {
   const post = data.contentfulPost
@@ -21,18 +18,6 @@ const SinglePost = ({ data, pageContext }) => {
     title: post.title,
     url: baseUrl + pageContext.slug,
   }
-
-  //   commentBox(projectId, {
-  //     backgroundColor: '#000',
-  //     textColor: '#fff'
-  // });
-
-  // useEffect(() => {
-  //   let removeCommentBox = commentBox(projectId)
-  //   return () => {
-  //     removeCommentBox()
-  //   }
-  // }, [])
 
   return (
     <Layout>

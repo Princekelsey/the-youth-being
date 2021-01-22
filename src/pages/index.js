@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { graphql, StaticQuery, Link } from "gatsby"
 import { Row, Col } from "reactstrap"
 import Post from "../components/post"

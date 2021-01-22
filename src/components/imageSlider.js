@@ -1,10 +1,5 @@
 import React, { useState } from "react"
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-} from "reactstrap"
+import { Carousel, CarouselItem, CarouselControl } from "reactstrap"
 import { graphql, StaticQuery } from "gatsby"
 import { v4 as uuidv4 } from "uuid"
 
@@ -13,16 +8,10 @@ const ImageSlider = () => {
 
   const [animating, setAnimating] = useState(false)
 
-  const goToIndex = newIndex => {
-    if (animating) return
-    setActiveIndex(newIndex)
-  }
-
   return (
     <StaticQuery
       query={sliderQuery}
       render={data => {
-        // setItemData(data.allContentfulSliderImage.edges)
         const next = () => {
           if (animating) return
           const nextIndex =
@@ -48,13 +37,6 @@ const ImageSlider = () => {
             previous={previous}
             key={uuidv4()}
           >
-            {/* <CarouselIndicators
-              items={data.allContentfulSliderImage.edges}
-              activeIndex={activeIndex}
-              onClickHandler={goToIndex}
-              key={uuidv4()}
-            /> */}
-
             {data.allContentfulSliderImage.edges.map(({ node }) => (
               <CarouselItem
                 onExiting={() => setAnimating(true)}
