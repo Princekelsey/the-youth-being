@@ -61,7 +61,7 @@ const indexQuerry = graphql`
     allContentfulPost(filter: { featured: { eq: true } }) {
       edges {
         node {
-          date(formatString: "MMM Do YYY")
+          date(formatString: "MMM Do YYYY")
           id
           slug
           tags
