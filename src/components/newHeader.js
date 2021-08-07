@@ -95,7 +95,7 @@ const NewHeader = () => {
                 <Link
                   to="/about"
                   style={
-                    window.location.href.indexOf("/about") !== -1
+                    window && window?.location?.href?.indexOf("/about") !== -1
                       ? { color: "#be2c95" }
                       : {}
                   }
@@ -108,7 +108,7 @@ const NewHeader = () => {
                 <Link
                   to="/posts"
                   style={
-                    window.location.href.indexOf("/posts") !== -1
+                    window && window?.location?.href?.indexOf("/posts") !== -1
                       ? { color: "#be2c95" }
                       : {}
                   }
@@ -121,7 +121,8 @@ const NewHeader = () => {
                   href="#"
                   data-toggle="sub-menu"
                   style={
-                    window.location.href.indexOf("/category") !== -1
+                    window &&
+                    window?.location?.href?.indexOf("/category") !== -1
                       ? { color: "#be2c95" }
                       : {}
                   }
@@ -133,7 +134,8 @@ const NewHeader = () => {
                     <Link
                       to={`/category/${slugify("Faith")}`}
                       style={
-                        window.location.href.indexOf(
+                        window &&
+                        window?.location?.href?.indexOf(
                           `/category/${slugify("Faith")}`
                         ) !== -1
                           ? { color: "#be2c95" }
@@ -147,7 +149,8 @@ const NewHeader = () => {
                     <Link
                       to={`/category/${slugify("Love & Relationships")}`}
                       style={
-                        window.location.href.indexOf(
+                        window &&
+                        window?.location?.href?.indexOf(
                           `/category/${slugify("Love & Relationships")}`
                         ) !== -1
                           ? { color: "#be2c95" }
@@ -161,7 +164,8 @@ const NewHeader = () => {
                     <Link
                       to={`/category/${slugify("Money/Business Matters")}`}
                       style={
-                        window.location.href.indexOf(
+                        window &&
+                        window?.location?.href?.indexOf(
                           `/category/${slugify("Money/Business Matters")}`
                         ) !== -1
                           ? { color: "#be2c95" }
@@ -175,7 +179,8 @@ const NewHeader = () => {
                     <Link
                       to={`/category/${slugify("Fashion")}`}
                       style={
-                        window.location.href.indexOf(
+                        window &&
+                        window?.location?.href?.indexOf(
                           `/category/${slugify("Fashion")}`
                         ) !== -1
                           ? { color: "#be2c95" }
@@ -189,7 +194,8 @@ const NewHeader = () => {
                     <Link
                       to={`/category/${slugify("Random Thoughts")}`}
                       style={
-                        window.location.href.indexOf(
+                        window &&
+                        window?.location?.href?.indexOf(
                           `/category/${slugify("Random Thoughts")}`
                         ) !== -1
                           ? { color: "#be2c95" }
@@ -203,7 +209,8 @@ const NewHeader = () => {
                     <Link
                       to={`/category/${slugify("Our Guests")}`}
                       style={
-                        window.location.href.indexOf(
+                        window &&
+                        window?.location?.href?.indexOf(
                           `/category/${slugify("Our Guests")}`
                         ) !== -1
                           ? { color: "#be2c95" }
@@ -217,7 +224,8 @@ const NewHeader = () => {
                     <Link
                       to={`/category/${slugify("Birthday Notes")}`}
                       style={
-                        window.location.href.indexOf(
+                        window &&
+                        window?.location?.href?.indexOf(
                           `/category/${slugify("Birthday Notes")}`
                         ) !== -1
                           ? { color: "#be2c95" }
@@ -234,7 +242,7 @@ const NewHeader = () => {
                 <Link
                   to="/contact"
                   style={
-                    window.location.href.indexOf(`/contact`) !== -1
+                    window && window?.location?.href?.indexOf(`/contact`) !== -1
                       ? { color: "#be2c95" }
                       : {}
                   }
