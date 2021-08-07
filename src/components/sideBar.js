@@ -118,7 +118,7 @@ const SideBar = ({ postAuthor, authorImageFluid, isHomePage }) => {
         <Card>
           <CardBody>
             <CardTitle className="text-center text-uppercase mb-3">
-              Featured posts
+              Featured Articles
             </CardTitle>
             <StaticQuery
               query={sideBarQuery}

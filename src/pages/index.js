@@ -50,7 +50,7 @@ const IndexPage = () => {
             </Link> */}
           </Col>
           <Col md="4">
-            <SideBar isHomePage />
+            <SideBar />
           </Col>
         </Row>
       </div>
