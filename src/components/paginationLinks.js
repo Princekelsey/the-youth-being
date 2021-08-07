@@ -12,7 +12,7 @@ const PaginationLinks = ({ currentPage, numberOfPages }) => {
     // <div id="client-paginator"></div>
     <Pagination
       aria-label="Page navigation example"
-      className="table-responsive mb-2"
+      className="table-responsive mb-2 py-3"
     >
       {isFirstPage ? (
         <PaginationItem disabled>

@@ -9,7 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
+import NewHeader from "./newHeader"
 import Footer from "./footer"
 
 import "../styles/index.scss"
@@ -33,7 +33,8 @@ const Layout = ({ children }) => {
         integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
         crossOrigin="anonymous"
       />
-      <Header siteTitle={data.site.siteMetadata.title} />
+
+      <NewHeader siteTitle={data.site.siteMetadata.title} />
 
       <div style={{ marginTop: "60px" }}>
         <main>{children}</main>

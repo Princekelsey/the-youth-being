@@ -3,7 +3,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Col, Row } from "reactstrap"
 import SideBar from "../components/sideBar"
-import logo from "../images/logo.jpeg"
+import logo from "../images/logo-nb.png"
 
 const AboutPage = () => (
   <Layout>

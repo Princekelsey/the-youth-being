@@ -56,7 +56,7 @@ const PostPage = () => {
 
 const indexQuerry = graphql`
   query {
-    allContentfulPost(sort: { fields: date, order: DESC }, limit: 3) {
+    allContentfulPost(sort: { fields: date, order: DESC }, limit: 6) {
       totalCount
       edges {
         node {

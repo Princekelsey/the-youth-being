@@ -1,12 +1,13 @@
 import React from "react"
-import { graphql, StaticQuery, Link } from "gatsby"
+// import { graphql } from "gatsby"
 import { Row, Col } from "reactstrap"
-import Post from "../components/post"
+// import Post from "../components/post"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Title from "../components/title"
 import ImageSlider from "../components/imageSlider"
 import SideBar from "../components/sideBar"
+import Landing from "../components/landing"
 
 const IndexPage = () => {
   return (
@@ -18,7 +19,8 @@ const IndexPage = () => {
       <div className="container pt-4">
         <Row>
           <Col md="8">
-            <StaticQuery
+            <Landing />
+            {/* <StaticQuery
               query={indexQuerry}
               render={data => {
                 return (
@@ -45,7 +47,7 @@ const IndexPage = () => {
               className="btn btn-sm rounded-pill btn-main mb-4 text-uppercase"
             >
               all posts
-            </Link>
+            </Link> */}
           </Col>
           <Col md="4">
             <SideBar />
@@ -56,31 +58,31 @@ const IndexPage = () => {
   )
 }
 
-const indexQuerry = graphql`
-  query {
-    allContentfulPost(filter: { featured: { eq: true } }) {
-      edges {
-        node {
-          date(formatString: "MMM Do YYYY")
-          id
-          slug
-          tags
-          title
-          shortIntroduction {
-            shortIntroduction
-          }
-          author {
-            name
-          }
-          image {
-            fluid(maxWidth: 800) {
-              src
-            }
-          }
-        }
-      }
-    }
-  }
-`
+// const indexQuerry = graphql`
+//   query {
+//     allContentfulPost(filter: { featured: { eq: true } }) {
+//       edges {
+//         node {
+//           date(formatString: "MMM Do YYYY")
+//           id
+//           slug
+//           tags
+//           title
+//           shortIntroduction {
+//             shortIntroduction
+//           }
+//           author {
+//             name
+//           }
+//           image {
+//             fluid(maxWidth: 800) {
+//               src
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
 
 export default IndexPage

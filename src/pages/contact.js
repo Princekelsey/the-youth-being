@@ -89,7 +89,10 @@ const ContactPage = () => {
                 <Label for="messageField">Message</Label>
                 <Input type="textarea" name="message" id="messageField" />
               </FormGroup>
-              <button type="submit" className="btn rounded-pill btn-main mb-4">
+              <button
+                type="submit"
+                className="btn rounded-pill btn-main mb-4 btn-block"
+              >
                 Submit
               </button>
               {notification()}
