@@ -2,7 +2,7 @@ import React from "react"
 import { Card, CardBody, CardTitle, CardImg, CardText } from "reactstrap"
 import values from "../images/values.jpg"
 import vision from "../images/vision.jpg"
-import mission from "../images/mission.png"
+import mission from "../images/mission-n.jpeg"
 
 const Landing = () => {
   return (
@@ -45,7 +45,7 @@ const Landing = () => {
           <CardText>
             We provide Truth and Valuable knowledge about Life and all that
             pertains to it through any and every platform available thereby
-            instilling the Right Mindset.
+            instilling the right mindset.
           </CardText>
         </CardBody>
       </Card>
@@ -69,7 +69,7 @@ const Landing = () => {
             <li>- Vision</li>
             <li>
               - Partnerships and Collaboration with brands/organizations that
-              share similar visions.
+              share similar vision
             </li>
             <li>- Integrity</li>
             <li>- Team Work</li>

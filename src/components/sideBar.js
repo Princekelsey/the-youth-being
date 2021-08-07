@@ -4,13 +4,13 @@ import {
   CardBody,
   CardText,
   CardTitle,
-  Form,
-  FormGroup,
-  Input,
+  // Form,
+  // FormGroup,
+  // Input,
 } from "reactstrap"
 import { graphql, StaticQuery, Link } from "gatsby"
 
-const SideBar = ({ postAuthor, authorImageFluid }) => {
+const SideBar = ({ postAuthor, authorImageFluid, isHomePage }) => {
   return (
     <div>
       {postAuthor && (
@@ -83,7 +83,7 @@ const SideBar = ({ postAuthor, authorImageFluid }) => {
           </CardBody>
         </Card>
       )}
-      <Card>
+      {/* <Card>
         <CardBody>
           <CardTitle className="text-center text-uppercase mb-3">
             Newsletter
@@ -101,7 +101,7 @@ const SideBar = ({ postAuthor, authorImageFluid }) => {
             </button>
           </Form>
         </CardBody>
-      </Card>
+      </Card> */}
       <Card>
         <CardBody>
           <CardTitle className="text-center text-uppercase ">
@@ -114,37 +114,39 @@ const SideBar = ({ postAuthor, authorImageFluid }) => {
           />
         </CardBody>
       </Card>
-      <Card>
-        <CardBody>
-          <CardTitle className="text-center text-uppercase mb-3">
-            Featured posts
-          </CardTitle>
-          <StaticQuery
-            query={sideBarQuery}
-            render={data => (
-              <div>
-                {data.allContentfulPost.edges.map(({ node }) => (
-                  <Card key={node.id}>
-                    <Link to={`/posts/${node.slug}`}>
-                      <img
-                        alt={node.slug}
-                        className="card-image-top"
-                        src={node.image.fluid.src}
-                        style={{ width: "100%" }}
-                      />
-                    </Link>
-                    <CardBody>
-                      <CardTitle>
-                        <Link to={`/posts/${node.slug}`}>{node.title}</Link>
-                      </CardTitle>
-                    </CardBody>
-                  </Card>
-                ))}
-              </div>
-            )}
-          />
-        </CardBody>
-      </Card>
+      {isHomePage ? null : (
+        <Card>
+          <CardBody>
+            <CardTitle className="text-center text-uppercase mb-3">
+              Featured posts
+            </CardTitle>
+            <StaticQuery
+              query={sideBarQuery}
+              render={data => (
+                <div>
+                  {data.allContentfulPost.edges.map(({ node }) => (
+                    <Card key={node.id}>
+                      <Link to={`/posts/${node.slug}`}>
+                        <img
+                          alt={node.slug}
+                          className="card-image-top"
+                          src={node.image.fluid.src}
+                          style={{ width: "100%" }}
+                        />
+                      </Link>
+                      <CardBody>
+                        <CardTitle>
+                          <Link to={`/posts/${node.slug}`}>{node.title}</Link>
+                        </CardTitle>
+                      </CardBody>
+                    </Card>
+                  ))}
+                </div>
+              )}
+            />
+          </CardBody>
+        </Card>
+      )}
     </div>
   )
 }
