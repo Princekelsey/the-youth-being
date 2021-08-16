@@ -153,7 +153,7 @@ const SideBar = ({ postAuthor, authorImageFluid, isHomePage }) => {
 
 const sideBarQuery = graphql`
   query {
-    allContentfulPost(sort: { fields: date, order: DESC }, limit: 3) {
+    allContentfulPost(filter: { featured: { eq: true } }, limit: 4) {
       edges {
         node {
           id
